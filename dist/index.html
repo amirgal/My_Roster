@@ -8,10 +8,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input id="teamNameInput" type="text" placeholder="Enter team name">
-    <button id="submitBtn">Submit</button>
+    
+    <div id="input-bar">
+        <input id="teamNameInput" type="text" placeholder="Enter team name">
+        <button id="submitBtn">Submit</button>
+    </div>
+    <div id="container"></div>
 
-    <div id="results"></div>
+    <script id="player-template" type="text/x-handlebars">
+        {{#each player}}
+            <div class='player'>
+                <div>{{firstName}} {{lastName}}</div>
+                <div>{{jerseyNum}}</div>
+                <img src={{img}}>
+                <div>{{position}}</div>
+            </div>
+        {{/each}}
+    </script>
 
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
