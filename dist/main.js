@@ -1,4 +1,4 @@
-$('#submitBtn').on('click', function() {
+$('#submitBtn').on('click', () => {
     const input = $('#teamNameInput').val()
 
     $.get(`/teams/${input}`, function(result) {
@@ -6,6 +6,22 @@ $('#submitBtn').on('click', function() {
     })
 })
 
+$('#dreamTeamBtn').on('click', () => {
+    $.get('/dreamTeam', (result) => {
+        renderer.render(result)
+    })
+})
+
+$('#container').on('click','.player', function() {
+    const name = $(this).find('#name').text().split(' ')
+    const player = {
+        firstName: name[0],
+        lastName: name[1],
+        img: $(this).find('img').attr('src'),
+        position: $(this).find('#position').text()
+    }
+    $.post(`/roster`, player)
+})
 
 class Renderer {
     render(data) {

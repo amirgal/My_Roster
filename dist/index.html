@@ -12,16 +12,17 @@
     <div id="input-bar">
         <input id="teamNameInput" type="text" placeholder="Enter team name">
         <button id="submitBtn">Submit</button>
+        <button id="dreamTeamBtn">Dream Team</button>
     </div>
     <div id="container"></div>
 
     <script id="player-template" type="text/x-handlebars">
         {{#each player}}
             <div class='player'>
-                <div>{{firstName}} {{lastName}}</div>
-                <div>{{jerseyNum}}</div>
+                <div id='name'>{{firstName}} {{lastName}}</div>
+                <div id='jerseyNum'>{{jerseyNum}}</div>
                 <img src={{img}}>
-                <div>{{position}}</div>
+                <div id='position'>{{position}}</div>
             </div>
         {{/each}}
     </script>
