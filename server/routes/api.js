@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const request = require('request')
-
+let id = 0
 const teamToIDs = {
     "lakers": "1610612747",
     "warriors": "1610612744",
@@ -18,7 +18,15 @@ router.get('/teams/:teamName', function(req, res) {
     request('http://data.nba.net/10s/prod/v1/2018/players.json', function(error,result) {
         let players = JSON.parse(result.body).league.standard
         players = players.filter(player => player.teamId == teamId && player.isActive).map(player => {
-            return {firstName: player.firstName, lastName: player.lastName, jerseyNum: player.jersey, position: player.pos}
+            return {
+                firstName: player.firstName,
+                lastName: player.lastName,
+                jerseyNum: player.jersey,
+                position: player.pos,
+                addBtn: 'Add to DreamTeam',
+                delBtn: 'Delete from DreamTeam',
+                playerId: id++
+            }
         })
 
         players.forEach(player => {
@@ -41,7 +49,21 @@ router.get('/dreamTeam', (req,res) => {
 
 router.post('/roster',(req,res) => {
     const player = req.body
-    dreamTeam.length < 5 ? dreamTeam.push(player) : res.end()
+    playerIndex = dreamTeam.findIndex(dreamTeamer => 
+                dreamTeamer.firstName == player.firstName &&
+                dreamTeamer.lastName == player.lastName)
+    if(playerIndex == -1) {
+        dreamTeam.length < 5 ? dreamTeam.push(player) : res.end()
+        res.end()
+    } 
+    res.end()
+})
+
+router.delete('/roster/:id',(req,res) => {
+    const {id} = req.params
+    playerIndex = dreamTeam.findIndex(dreamTeamer => 
+        dreamTeamer.playerId == id)
+    dreamTeam.splice(playerIndex,1)
     res.end()
 })
 
