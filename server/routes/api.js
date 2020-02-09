@@ -49,9 +49,7 @@ router.get('/dreamTeam', (req,res) => {
 
 router.post('/roster',(req,res) => {
     const player = req.body
-    playerIndex = dreamTeam.findIndex(dreamTeamer => 
-                dreamTeamer.firstName == player.firstName &&
-                dreamTeamer.lastName == player.lastName)
+    playerIndex = dreamTeam.findIndex(dreamTeamer => dreamTeamer.playerId == player.playerId)
     if(playerIndex == -1) {
         dreamTeam.length < 5 ? dreamTeam.push(player) : res.end()
         res.end()
