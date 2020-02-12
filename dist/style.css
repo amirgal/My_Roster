@@ -1,0 +1,31 @@
+body {
+    background-color: lightgray;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
+}
+
+#input-bar {
+    display: flex;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+#teamNameInput {
+    flex: 1;
+}
+
+#submitBtn {
+    width: 15vw;
+}
+
+.player {
+    justify-items: center;
+    display: grid;
+    box-shadow: 2px 2px 2px black;
+    border: 1px solid black;
+    background-color: lightsalmon;
+}
